@@ -8,17 +8,36 @@
 
 /**
  * class Card
-
+ *
+ * A class for a card object, has a face, suit, description and value properties
+ * description depends on card's face and suit
+ * value depends on card's face
+ *
+ * instantiated by giving face and suit
+ * when instantiated description and value needs to be set accordingly
  */
 class Card
 {
+    /**
+     * @var mixed $face describes face of a card
+     */
     public $face;
+    /**
+     * @var String $suit describes a suit of a card
+     */
     public $suit;
+    /**
+     * @var String $description constructed accordingly to card's face and suit example: "2 of Diamonds"
+     */
     public $description;
+    /**
+     * @var Integer $value cards value accordingly to its face
+     */
     public $value;
 
     /**
-     * construct new card
+     * construct new card when given face and suit
+     * sets its description and its value
      *
      * @param mixed  $face face of a card
      * @param String $suit suit of a card
@@ -32,7 +51,7 @@ class Card
     }
 
     /**
-     * set card description
+     * sets card description accordingly to its face and suit
      */
     public function setDescription()
     {
@@ -40,7 +59,7 @@ class Card
     }
 
     /**
-     * set card value
+     * sets card value accordingly to its face
      */
     public function setValue()
     {
