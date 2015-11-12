@@ -8,11 +8,9 @@
 
 /**
  * class Card
- *
  * A class for a card object, has a face, suit, description and value properties
  * description depends on card's face and suit
  * value depends on card's face
- *
  * instantiated by giving face and suit
  * when instantiated description and value needs to be set accordingly
  */
