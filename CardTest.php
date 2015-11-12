@@ -31,34 +31,83 @@ class CardTest extends PHPUnit_Framework_TestCase
     public function test_has_a_description()
     {
         $card = new Card('2', 'Diamonds');
-        $this->assertEquals('Two of Diamonds', $card->description);
+        $this->assertEquals('2 of Diamonds', $card->description);
+    }
+
+    public function test_card_Value_Jack()
+    {
+        $card = new Card('Jack', 'Diamonds');
+        $this->assertEquals(10, $card->value);
+    }
+
+    public function test_card_Value_King()
+    {
+        $card = new Card('King', 'Diamonds');
+        $this->assertEquals(10, $card->value);
+    }
+
+    public function test_card_Value_Queen()
+    {
+        $card = new Card('Queen', 'Diamonds');
+        $this->assertEquals(10, $card->value);
+    }
+
+    public function test_card_Value_Ace11()
+    {
+        $card = new Card('Ace', 'Diamonds');
+        $expected = array(1, 11);
+        $this->assertEquals($expected, $card->value);
     }
 
     /**
      * @param $face
      * @param $suit
-     * @param $ouput
-     * @dataProvider descriptionProvider
+     * @param $description
+     *
+     * @dataProvider dataProvider
      */
-    public function test_face_description($face, $suit, $ouput)
+    public function test_card_desription($face, $suit, $description)
     {
         $card = new Card($face, $suit);
-        $this->assertEquals($output, $face);
-
+        $expected = $card->description;
+        $this->assertEquals($expected, $description);
     }
 
-    public static function descriptionProvider()
+    public static function dataProvider()
     {
-        $test = [
-            [2, 'Two'],
-            [3, 'Three'],
-            [4, 'Four'],
-            [5, 'Five'],
-            [6, 'Six'],
-            [7, 'Seven'],
-            [8, 'Eight'],
-            [9, 'Nine'],
-            [10, 'Ten']
+        $tests = [
+            [2, 'Diamonds', '2 of Diamonds'],
+            [3, 'Clubs', '3 of Clubs'],
+            ['Ace', 'Hearts', 'Ace of Hearts']
         ];
-        return $test;
+        return $tests;
     }
+
+    /**
+     * @param $face
+     * @param $suit
+     * @param $value
+     *
+     * @dataProvider dataProvider2
+     */
+    public function test_card_values($face, $suit, $value)
+    {
+        $card = new Card($face, $suit);
+        $expected = $card->value;
+        $this->assertEquals($expected, $value);
+    }
+
+    public static function dataProvider2()
+    {
+        $tests = [
+            [2, 'Diamonds', 2],
+            ['Jack', 'Clubs', 10],
+            ['Queen', 'Clubs', 10],
+            ['King', 'Clubs', 10],
+            ['Ace', 'Clubs', [1, 11]],
+        ];
+        return $tests;
+    }
+
+}
+
